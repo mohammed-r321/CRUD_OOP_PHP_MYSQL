@@ -12,6 +12,7 @@ class Product{
     public $description;
     public $category_id;
     public $timestamp;
+    public $brand;
  
     public function __construct($db){
         $this->conn = $db;
@@ -24,11 +25,12 @@ class Product{
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    name=:name, price=:price, description=:description, category_id=:category_id, created=:created";
+                    name=:name, price=:price, description=:description, category_id=:category_id,brand=:brand, created=:created";
  
         $stmt = $this->conn->prepare($query);
  
         // posted values
+        $this->brand=htmlspecialchars(strip_tags($this->brand));
         $this->name=htmlspecialchars(strip_tags($this->name));
         $this->price=htmlspecialchars(strip_tags($this->price));
         $this->description=htmlspecialchars(strip_tags($this->description));
@@ -38,6 +40,7 @@ class Product{
         $this->timestamp = date('Y-m-d H:i:s');
  
         // bind values 
+        $stmt->bindParam(":brand", $this->brand);
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":price", $this->price);
         $stmt->bindParam(":description", $this->description);
@@ -54,7 +57,7 @@ class Product{
     function readAll($from_record_num, $records_per_page){
  
         $query = "SELECT
-                    id, name, description, price, category_id
+                    id, name, description, price, category_id, brand
                 FROM
                     " . $this->table_name . "
                 ORDER BY
@@ -82,7 +85,7 @@ class Product{
     function readOne(){
  
         $query = "SELECT
-                    name, price, description, category_id
+                    name, price, description, category_id,brand
                 FROM
                     " . $this->table_name . "
                 WHERE
@@ -96,6 +99,7 @@ class Product{
      
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
      
+      
         $this->name = $row['name'];
         $this->price = $row['price'];
         $this->description = $row['description'];

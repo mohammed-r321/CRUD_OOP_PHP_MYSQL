@@ -43,6 +43,7 @@ if($num>0){
             echo "<th>Description</th>";
             echo "<th>Category</th>";
             echo "<th>Actions</th>";
+            echo "<th>brnd</th>";
         echo "</tr>";
  
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){

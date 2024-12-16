@@ -23,6 +23,7 @@ echo "</div>";
     if($_POST){
     
         // set product property values
+        $product->brand = $_POST['brand'];
         $product->name = $_POST['name'];
         $product->price = $_POST['price'];
         $product->description = $_POST['description'];
@@ -58,7 +59,10 @@ echo "</div>";
             <td>Description</td>
             <td><textarea name='description' class='form-control'></textarea></td>
         </tr>
- 
+        <tr>
+            <td>brand</td>
+            <td><input type='text' name='brand' class='form-control' /></td>
+        </tr>
         <tr>
             <td>Category</td>
             <td>

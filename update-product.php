@@ -34,6 +34,8 @@ $product->readOne();
 if($_POST){
  
     // set product property values
+        
+    $product->brand = $_POST['brand'];
     $product->name = $_POST['name'];
     $product->price = $_POST['price'];
     $product->description = $_POST['description'];
@@ -71,7 +73,11 @@ if($_POST){
             <td>Description</td>
             <td><textarea name='description' class='form-control'><?php echo $product->description; ?></textarea></td>
         </tr>
- 
+        <tr>
+            <td>brand</td>
+            <td><input type='text' name='brand' value='<?php echo $product->brand; ?>' class='form-control' /></td>
+        </tr>
+
         <tr>
             <td>Category</td>
             <td>

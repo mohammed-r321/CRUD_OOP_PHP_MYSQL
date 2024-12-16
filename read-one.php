@@ -50,6 +50,11 @@ echo "<table class='table table-hover table-responsive table-bordered'>";
     echo "</tr>";
  
     echo "<tr>";
+
+    echo "<tr>";
+    echo "<td>brand</td>";
+    echo "<td>{$product->brand}</td>";
+echo "</tr>";
         echo "<td>Category</td>";
         echo "<td>";
             // display category name
